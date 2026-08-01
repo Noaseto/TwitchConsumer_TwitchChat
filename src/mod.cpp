@@ -7,6 +7,7 @@
 #include <cstdint>
 #include <cstdio>
 
+#include "twitchStuff/twitchData.h"
 #include "twitchLoaderService.h"
 
 DEFINE_MOD();
@@ -16,9 +17,9 @@ IMPORT_SERVICE(TwitchEventsService, svc_twitch_events);
 
 extern "C" {
 
-static void handle_chat_event(const TwitchChatEvent& event) {
+static void handle_chat_event(const TwitchEvent& event) {
     char buf[512];
-    snprintf(buf, sizeof(buf), "%s: %s", event.username, event.message);
+    snprintf(buf, sizeof(buf), "%s", event.data.c_str());
     svc_log->info(mod_ctx, buf);
 }
 
@@ -30,7 +31,7 @@ MOD_EXPORT ModResult mod_initialize(ModError*) {
 MOD_EXPORT ModResult mod_update(ModError*) {
     // thanks encounter :3
     // Create variables that get_events will write to
-    const TwitchChatEvent* events = nullptr;
+    const TwitchEvent* events = nullptr;
     uint32_t eventCount = 0;
 
     // Call into TwitchEventsService
