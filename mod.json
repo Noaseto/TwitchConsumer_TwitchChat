@@ -1,7 +1,7 @@
 {
-  "id": "com.example.my_mod",
-  "name": "My Mod",
+  "id": "io.github.noaseto.twitchchat",
+  "name": "Twitch chat",
   "version": "1.0.0",
-  "author": "You",
-  "description": "An example Dusklight mod"
+  "author": "Noaseto",
+  "description": "Displays a Twitch chat"
 }
