@@ -10,14 +10,14 @@ enum class TwitchEventType {
     Cheer,
     SessionWelcome,
     Unknown, // bruh
-    ERROR
+    TwitchEventError // do not name this only error in capital, windows compiler does not like
     // todo some ideas to add: Raid, prediction, channel point reward
 };
 
-// Todo: Make this is agnostic for the data transfer over service call (or should I ?)
 typedef struct TwitchEvent {
+    uint32_t struct_size;
     TwitchEventType type;
-    std::string data;
+    std::string* data;
 } TwitchEvent;
 
 typedef struct TwitchEventsService {
